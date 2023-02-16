@@ -46,7 +46,8 @@ def get_course(coursename):
     Returns:
       A dictionary of course details
     """
-    ineuron_url = 'https://ineuron.ai/courses'
+    ineuron_url = 'https://ineuron.ai/course/'
+    
     uClient = uReq(ineuron_url + str(coursename).replace(" ", "-"))
     course_page = uClient.read()
     uClient.close()
@@ -131,20 +132,18 @@ def scrap_all():
     scrapes the data and inserts it into the database
     """
     dbcon = mongodbconnection(username='mongodb', password='mongodb')
-    db_collection = dbcon.getCollection(
-        "iNeuron_scrapper", "course_collection")
+    db_collection = dbcon.getCollection("iNeuron_scrapper", "course_collection")
     try:
         if dbcon.isCollectionPresent("iNeuron_scrapper", "course_collection"):
             pass
         else:
             final_list = []
             list_courses = all_course()
+            
             for i in list_courses:
                 final_list.append(get_course(i))
             db_collection.insert_many(final_list)
+            
     except Exception as e:
         logging.error("error in DB insertion", e)
-
-a=all_course()
-print (a)
 
