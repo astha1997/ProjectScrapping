@@ -48,6 +48,7 @@ def result():
         input_course = request.form['content'].replace("  ", " ")
         course_data = ineuron_coll.find_one({"Course_title": input_course}, {"_id": 0})
         logging.info("User input is taken and results Generated")
+        
         return render_template("results.html", course_data=course_data)
     else:
         return render_template('index.html')
