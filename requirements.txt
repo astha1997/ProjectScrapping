@@ -6,3 +6,5 @@ dnspython
 gunicorn==20.1.0
 mysql-connector-python==8.0.31
 fpdf
+boto3
+s3fs
