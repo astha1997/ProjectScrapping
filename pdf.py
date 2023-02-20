@@ -1,5 +1,15 @@
 from fpdf import FPDF
 from Scrapper import all_course, scrap_all, get_course
+import boto3
+
+s3 = boto3.client('s3')
+
+s3 = boto3.resource(
+    service_name='s3',
+    region_name='ap-northeast-1',
+    aws_access_key_id='AKIAWI3LBRGYDQKTC5HZ',
+    aws_secret_access_key='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'
+)
 
 
 
@@ -61,6 +71,7 @@ for i in list_courses:
                 
         # save the pdf with name .pdf
         pdf.output(filename)
+        s3.Bucket('scrapfiles').upload_file(Filename=filename, Key=filename)
         #To stop at 50 files as no of files were huge
         if(count>=50):
                 break
