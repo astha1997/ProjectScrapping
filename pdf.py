@@ -7,8 +7,8 @@ s3 = boto3.client('s3')
 s3 = boto3.resource(
     service_name='s3',
     region_name='ap-northeast-1',
-    aws_access_key_id='AKIAWI3LBRGYDQKTC5HZ',
-    aws_secret_access_key='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'
+    aws_access_key_id='**************',
+    aws_secret_access_key='******'
 )
 
 
